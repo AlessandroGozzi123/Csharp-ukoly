@@ -1,0 +1,131 @@
+using System;
+
+class Program {
+
+  static int nahodneCislo(int a, int b) {
+    Random generator = new Random();
+    int cislo = generator.Next(a,b+1);
+    return cislo;
+  }
+
+
+
+
+  public static void Main (string[] args) {
+
+    string opakovani = "a";
+    while (opakovani == "a") {
+
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("Hra hádání čísla");
+      Console.WriteLine("");
+
+      Console.Write("Zadejte dolní mez intervalu hádání: ");
+      int a;
+      while(!int.TryParse(Console.ReadLine(), out a)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte znova celociselny citatel (a): ");
+      }
+      while (a < 0) {
+        Console.WriteLine("Zadejte kladne cislo!");
+        while(!int.TryParse(Console.ReadLine(), out a)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte znova celociselny citatel (a): ");
+        }
+      }
+
+      Console.Write("Zadejte horní mez intervalu hádání: ");
+      int b;
+      while(!int.TryParse(Console.ReadLine(), out b)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte znova celociselny citatel (b): ");
+      }
+      while (b < 0) {
+        Console.WriteLine("Zadejte kladne cislo!");
+        while(!int.TryParse(Console.ReadLine(), out b)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte znova celociselny citatel (b): ");
+        }
+      }
+
+      Console.WriteLine("Vyberte možnost tím, že napíšete její číslo. ");
+      Console.WriteLine("1. Hráč hádá");
+      Console.WriteLine("2. Hráč myslí číslo");
+      int cyklus = 0;
+      int vyber = 0;
+      vyber = Convert.ToInt32(Console.ReadLine());
+      while (vyber > 2 || vyber < 1) {
+        Console.WriteLine("Musite zadat 1 nebo 2. :");
+        vyber = Convert.ToInt32(Console.ReadLine());
+      }
+        if (vyber == 1 || vyber == 2) cyklus = 1;
+      
+      int pocetTipu = 0;
+      if (vyber == 1) {
+        //prvni hra
+        Console.WriteLine("");
+        Console.WriteLine("Myslím si číslo, budeš hádat.");
+        Console.WriteLine("");
+        int mysleneCislo = nahodneCislo(a,b);
+        int tip = 0;
+        while (tip != mysleneCislo) {
+          Console.WriteLine("Zadej cislo: ");
+          tip = Convert.ToInt32(Console.ReadLine());
+          while (tip < 0) {
+            Console.WriteLine("Musite zadat prirozene cislo! :");
+            tip = Convert.ToInt32(Console.ReadLine());
+          }
+          pocetTipu++;
+          if (mysleneCislo < tip) {
+            Console.WriteLine("Uber.");
+          } else if (mysleneCislo > tip) {
+            Console.WriteLine("Pridej.");
+          } else {
+            Console.WriteLine("Správně! Potreboval jsi {0} pokusu.",pocetTipu);
+          }
+        }
+        Console.WriteLine("Kolo skončilo.");
+      } else {
+        //Hrac myslí číslo
+        Console.WriteLine("");
+        Console.WriteLine("Mysli si číslo v tvém zadaném intervalu a počítač bude hádat.");
+        Console.WriteLine("");
+        Console.WriteLine("Až budete přivraveni napiště start");
+        Console.WriteLine("");
+        string start = Console.ReadLine();
+        string start2 = "start";
+        while (!start.Equals("start")) {
+          start = Console.ReadLine();
+        }
+        //pocitac tipuje
+        int tip = nahodneCislo(a,b);
+        bool spravnaOdpoved = false;
+        while (spravnaOdpoved == false) {
+          Console.WriteLine("Pocitac si tipnul {0}.", tip);
+          Console.WriteLine("Je to správně?");
+          Console.WriteLine("Napiště vic, min nebo spravne");
+          string odpoved = Console.ReadLine();
+          if (odpoved.Equals("vic")) {
+            a = tip+1;
+            tip = nahodneCislo(a,b);
+            pocetTipu++;
+          } else if (odpoved.Equals("min")) {
+            b = tip-1;
+            tip = nahodneCislo(a,b);
+            pocetTipu++;
+          } else if (odpoved.Equals("spravne")) {
+            Console.WriteLine("Pocitac to uhold za {0} pokusu.",pocetTipu);
+            spravnaOdpoved = true;
+          } else {
+            Console.WriteLine("Zadali jste špatnou odpověď.");
+            Console.WriteLine("Zadejte jedno -> vic, min, spravne");
+          }
+        }
+        Console.WriteLine("Kolo skončilo.");
+      }
+
+
+
+      Console.WriteLine("\n Pokud chcete program opakovat, stisknete a");
+      opakovani = Console.ReadLine();
+    }
+    Console.WriteLine("Konec programu");
+  }
+}

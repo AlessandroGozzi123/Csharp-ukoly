@@ -1,0 +1,41 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    string opakovani = "a";
+
+    while (opakovani == "a") {
+      Console.Clear();
+      Console.WriteLine("************************************");  
+      Console.WriteLine("Vykresleni rovnoramenneho trojuhelniku");
+      Console.WriteLine("*************************************");
+
+      Console.Write("\nZadejte vysku rovnoramenneho trojuhelniku: ");
+      int vyska;
+      while(!int.TryParse(Console.ReadLine(), out vyska)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte vysku: ");
+      }
+
+      Console.WriteLine("Zadali jsme: vyska = {0}",vyska);
+      int pocet_mezer = (vyska-1)*2;
+      int pocet_hvezd = 1;
+
+      for (int i = 0; i < vyska; i++) {
+        for (int j = 0; j < pocet_mezer; j++) {
+          Console.Write(" ");
+        }
+        for (int k = 0; k < pocet_hvezd; k++) {
+          Console.Write("* ");
+        }
+        pocet_hvezd = pocet_hvezd + 2;
+        pocet_mezer = pocet_mezer - 2;
+        Console.WriteLine();
+      }
+
+                
+
+      Console.WriteLine("\n\nPro opakování programu stiskněte klávesu a");
+      opakovani=Console.ReadLine();
+    }
+  }
+}

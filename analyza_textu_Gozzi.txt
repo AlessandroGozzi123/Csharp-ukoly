@@ -1,0 +1,56 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    
+    string opakovani = "a"; 
+    while(opakovani == "a")
+    {
+      Console.Clear();
+      Console.WriteLine("***************************");
+      Console.WriteLine("****** Analýza textu ******");
+      Console.WriteLine("***************************");
+
+
+      Console.Write("Zadejte vstupní text: ");
+      string text = Console.ReadLine();
+
+      text = text.ToLower();
+      Console.WriteLine(text);
+      int pocetSam = 0;
+      int pocetSou = 0;
+      int pocetCisel = 0;
+      
+      string sam = "aáeéěiíoóuúůyý"; 
+      string sou = "chbčdďfgjklmnňpqrřsštťvwxzž";
+      string cisla = "123456789";
+      foreach(char znak in text)
+      {
+        if(sam.Contains(znak))
+          pocetSam++;
+        else if(sou.Contains(znak))
+          pocetSou++;
+        else if(cisla.Contains(znak)) 
+        pocetCisel++;
+      }
+      
+      int pocetCh = 0;
+      for (int i = 0; i < text.Length; i++) {
+        if (text[i] == 'c' && text[i+1] == 'h') pocetCh++;
+      }
+      pocetSou = pocetSou - pocetCh;
+
+      Console.WriteLine("\n\n\nPočet samohlásek: {0}", pocetSam);
+      Console.WriteLine("Počet souhlásek: {0}", pocetSou);
+      Console.WriteLine("Počet cisel: {0}", pocetCisel);
+      
+      int ostatni = text.Length - pocetSam - pocetSou - pocetCisel - pocetCh;
+      Console.WriteLine("Počet ostatních znaků: {0}",ostatni);
+
+
+      Console.WriteLine("\n\nPro opakování programu stiskněte klávesu a");
+      opakovani = Console.ReadLine();  
+    }
+    Console.WriteLine("Program se KONČÍ");
+  }
+}

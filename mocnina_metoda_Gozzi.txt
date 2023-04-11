@@ -1,0 +1,38 @@
+using System;
+
+class Program {
+
+
+  static double mocnina(double cislo, double exponent) {
+    double vysledek = 0;
+    vysledek = Math.Pow(cislo, exponent);
+    return vysledek;
+  }
+
+  static double NactiCeleCislo(string text1, string text2) {
+    Console.WriteLine (text1);
+    double cislo;
+    while(!double.TryParse(Console.ReadLine(), out cislo)) {
+      Console.WriteLine(text2);
+    }
+    return cislo;
+  }
+
+  public static void Main (string[] args) {
+    string opakovani = "a";
+    while (opakovani == "a") {
+     Console.Clear();
+     double cislo = NactiCeleCislo("Zadejte cislo ktere chcete mocnit: ","Nebylo zadano cele cislo! Zadejte znovu!");
+     double exponent = NactiCeleCislo("Zadejte exponent: ","Nebylo zadano cele cislo! Zadejte znovu!");
+
+     double vysledek = mocnina(cislo, exponent);
+
+     Console.WriteLine("Vysledek: {0}", vysledek);
+
+
+     Console.WriteLine("Opakovani programu = stisknete a");
+     opakovani = Console.ReadLine();
+
+    }
+  }
+}

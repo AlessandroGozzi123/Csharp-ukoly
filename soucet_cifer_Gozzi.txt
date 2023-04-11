@@ -1,0 +1,27 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+    string opakovani = "a";
+    while(opakovani == "a") {
+      Console.Clear();
+      Console.WriteLine("Napiste pozadovane cislo, jehoz ciferni soucet chcete.");
+      int a = int.Parse(Console.ReadLine());
+      int zaloha = a;
+      int suma = 0;
+      int cislo = 0;
+
+      while (a >= 10) {
+        cislo = a % 10;
+        a = (a-cislo)/10;
+        suma = suma + cislo;
+      }
+      suma = suma + a;
+      Console.WriteLine("Zadali jste cislo: {0}", zaloha);
+      Console.WriteLine("Soucet cislic cisla {0} je {1}", zaloha, suma);
+    
+      Console.WriteLine("Pokud chcete program opakovat stisknete a");
+      opakovani = Console.ReadLine();
+    }
+  }
+}

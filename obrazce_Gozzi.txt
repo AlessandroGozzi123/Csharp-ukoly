@@ -1,0 +1,130 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+
+    string opakovani = "a";
+    while(opakovani == "a") {
+
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("Obrazce");
+      Console.WriteLine("");
+
+      Console.Write("Zadejte cislo ktere bude predstavovat delku: ");
+      int n;
+      while(!int.TryParse(Console.ReadLine(), out n)) {
+        Console.WriteLine("Nebylo zadano cele cislo. Zadejte znova celociselny citatel (a): ");
+      }
+    
+
+      //obrazec 12
+      for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+          if ((i%2) == 0) {
+            Console.Write(" *");
+          } else {
+            Console.Write("* ");
+          }
+        }
+        Console.WriteLine("");
+      }
+
+      //obrazec 19
+      Console.WriteLine("");
+      Console.WriteLine("");
+      Console.WriteLine("");
+
+      //prvnitroj
+      int mezery = 0;
+      int pocetHvezd = n;
+      int pocetRadku = 0;
+      if ((n%2) == 0) {
+        pocetRadku = n/2;
+      } else {
+        pocetRadku = (n+1)/2;
+      }
+
+      for (int i = 0; i < pocetRadku; i++) {
+        for (int j = 0; j < mezery; j++) {
+          //mezery trojuhleniku
+          Console.Write(" ");
+        }
+        for (int k = 0; k < pocetHvezd; k++) {
+          //hvezdicky
+          Console.Write("*");
+        }
+        Console.WriteLine("");
+        if (i != pocetRadku-1) mezery++;
+        if (i != pocetRadku-1) {
+          pocetHvezd = pocetHvezd - 2;
+        }
+      }
+      //druhytroj
+
+      for (int i = 0; i < pocetRadku; i++) {
+        for (int j = 0; j < mezery; j++) {
+          //mezery trojuhleniku
+          Console.Write(" ");
+        }
+        for (int k = 0; k < pocetHvezd; k++) {
+          //hvezdicky
+          Console.Write("*");
+        }
+        Console.WriteLine("");
+        mezery--;
+        pocetHvezd = pocetHvezd + 2;
+      }
+
+      //obrazec 10
+      
+      Console.WriteLine("");
+      Console.WriteLine("");
+      Console.WriteLine("");
+      
+      for (int i = 0; i < n; i++) {
+        if ((i%2) == 0) {
+          for (int j = 0; j < n; j++) {
+            Console.Write("*");
+          }
+        } else {
+          if (((i+1)%4) == 0) {
+            for (int k = 0; k < n; k++) {
+              if (k != 0) {
+                Console.Write(" ");
+              } else {
+                Console.Write("*");
+              }
+            }
+          } else {
+            for (int f = 0; f < n; f++) {
+              if (f != (n-1)) {
+                Console.Write(" ");
+              } else {
+                Console.Write("*");
+              }
+            }
+          }
+        }
+        Console.WriteLine("");
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Console.WriteLine("\n Pokud chcete program opakovat, stisknete a");
+      opakovani = Console.ReadLine();
+    }
+    Console.WriteLine("Konec programu");
+  }
+}
